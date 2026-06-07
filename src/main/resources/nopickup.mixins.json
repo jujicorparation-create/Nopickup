@@ -3,6 +3,7 @@
     "package": "com.nopickup.mixin",
     "compatibilityLevel": "JAVA_21",
     "client": [
+        "NoPickupMixin"
     ],
     "injectors": {
         "defaultRequire": 0
