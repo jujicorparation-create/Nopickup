@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ItemEntity.class)
 public class NoPickupMixin {
 
-    @Inject(method = "onPlayerCollision", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "onCollideWithPlayer", at = @At("HEAD"), cancellable = true)
     private void onPickup(PlayerEntity player, CallbackInfo ci) {
         ItemStack stack = ((ItemEntity)(Object)this).getStack();
         if (NoPickupMod.shouldBlock(stack)) {
