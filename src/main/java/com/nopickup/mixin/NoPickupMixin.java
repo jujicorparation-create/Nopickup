@@ -9,14 +9,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(PlayerEntity.class)
+@Mixin(ItemEntity.class)
 public class NoPickupMixin {
 
-    @Inject(method = "attemptPickup", at = @At("HEAD"), cancellable = true)
-    private void onAttemptPickup(ItemEntity itemEntity, CallbackInfo ci) {
-        ItemStack stack = itemEntity.getStack();
+    @Inject(method = "onPlayerCollision", at = @At("HEAD"), cancellable = true)
+    private void onPickup(PlayerEntity player, CallbackInfo ci) {
+        ItemStack stack = ((ItemEntity)(Object)this).getStack();
         if (NoPickupMod.shouldBlock(stack)) {
             ci.cancel();
         }
     }
-}
+            }
