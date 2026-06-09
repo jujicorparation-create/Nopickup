@@ -1,21 +1,21 @@
 {
-    "schemaVersion": 1,
-    "id": "nopickup",
-    "version": "1.0.0",
-    "name": "NoPickup",
-    "description": "Keraksiz itemlarni yerdan olmaydi",
-    "environment": "client",
-    "entrypoints": {
-        "client": [
-            "com.nopickup.NoPickupMod"
-        ]
-    },
-    "mixins": [
-        "nopickup.mixins.json"
-    ],
-    "depends": {
-        "fabricloader": ">=0.15.11",
-        "fabric-api": "*",
-        "minecraft": "1.21.1"
-    }
+  "schemaVersion": 1,
+  "id": "nopickup",
+  "version": "1.0.0",
+  "name": "NoPickup",
+  "description": "Keraksiz itemlarni yerdan olmaydi.",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.nopickup.NoPickupMod"
+    ]
+  },
+  "mixins": [
+    "nopickup.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.11",
+    "fabric-api": "*",
+    "minecraft": "1.21.1"
+  }
 }
