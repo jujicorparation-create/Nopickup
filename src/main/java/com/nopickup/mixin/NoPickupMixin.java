@@ -12,15 +12,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ItemEntity.class)
 public class NoPickupMixin {
 
-    @Inject(method = "onPlayerCollision", at = @At("HEAD"), cancellable = true)
-    private void onPickup(PlayerEntity player, CallbackInfo ci) {
-        // 'this' orqali ItemEntity obyektini olamiz
+    // playerTouch - player narsaning ustiga kelganda (ham server, ham clientda) ishlaydi
+    @Inject(method = "playerTouch(Lnet/minecraft/entity/player/PlayerEntity;)void", at = @At("HEAD"), cancellable = true)
+    private void onPlayerTouch(PlayerEntity player, CallbackInfo ci) {
+        // 'this' orqali yerdagi ItemEntity-ni olamiz
         ItemEntity itemEntity = (ItemEntity) (Object) this;
         ItemStack stack = itemEntity.getStack();
 
-        // Agar siz yaratgan NoPickupMod-da bloklash funksiyasi aktiv bo'lsa va element ro'yxatda bo'lsa
+        // Agar mod aktiv bo'lsa va yerda yotgan narsa keraksiz bo'lsa
         if (NoPickupMod.shouldBlock(stack)) {
-            ci.cancel(); // Player narsaga tegsa ham uni inventariga ololmaydi
+            ci.cancel(); // Player narsaga tegsa ham, o'yin uni umuman ko'rmaydi (yerdan olmaydi)
         }
     }
 }
